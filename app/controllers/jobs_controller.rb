@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
 	before_action :find_job, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, except: [:index, :show]
+	
 	def index
 		if params[:category].blank?
 			@jobs = Job.all.order("created_at DESC")
@@ -12,10 +14,10 @@ class JobsController < ApplicationController
 		
 	end
 	def new
-		@job = Job.new
+		@job = current_user.jobs.build
 	end
 	def create
-		@job = Job.new(jobs_params)
+		@job = current_user.jobs.build(jobs_params)
 
 		if @job.save
 			redirect_to @job
