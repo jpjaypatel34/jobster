@@ -1,7 +1,11 @@
-= simple_form_for(@job, html: { class: 'form-horizontal' }) do |f|
+= simple_form_for @job, html: { multipart: true, class: 'form-horizontal' } do |f|
 	.form-inputs
 		= f.collection_select :category_id, Category.all, :id, :name, {promt: "Choose a category" }, input_html: { class: "btn btn-default dropdown-toggle" }
 		= f.input :title, label: "Job Title", input_html: { class: "form-inputs" }
+		.form-group
+			= f.label :image
+			%br
+			= f.file_field :image
 		= f.input :description, label: "Job Description", input_html: { class: "form-inputs" }
 		= f.input :company, label: "Your Company", input_html: { class: "form-inputs" }
 		= f.input :url, label: "Link to Job", input_html: { class: "form-inputs" }
