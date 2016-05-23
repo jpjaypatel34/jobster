@@ -1,13 +1,12 @@
-.panel.panel-default
-	#jobs
-		.job
-			.panel-heading.jobtitle
-				%h2= @job.title
-			.panel-body
-				= image_tag @job.image.url(:medium)		
-				%p= @job.description
-				%p= @job.company
-			%button.btn.btn-default= link_to "Apply for Job", @job
+#jobs
+	.job
+		.panel-heading.jobtitle
+			%h2= @job.title
+		.panel-body
+			= image_tag @job.image.url(:medium)		
+			%p= @job.description
+			%p= @job.company
+		%button.btn.btn-default= link_to "Apply for Job", @job						
 	#links
 		= link_to "Back", root_path, class: "btn btn-sm btn-default"
 		- if user_signed_in?
